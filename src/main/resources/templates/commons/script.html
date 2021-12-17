@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+
+<!--    罗支行-->
+<div th:fragment="_header">
+    <div class="am-topbar am-topbar-inverse admin-header" >
+        <div class="am-topbar-brand">
+            <strong>Long Code</strong> <small style="font-size: 16px;">京唐客户关系管理系统</small>
+            <span style="font-size: 14px;letter-spacing: 1em;padding-left: 2em;">
+                <a href="#" ><button style="color: blue;padding: 3px 15px;"> 线索</button></a>
+                <a href="#" ><button style="color: blue;padding: 3px 15px;"> 客户</button></a>
+                <a href="${ctxPath}/business/list" ><button style="color: blue;padding: 3px 15px;"> 商机</button></a>
+                <a href="#" ><button style="color: blue;padding: 3px 15px;"> 产品</button></a>
+                <a href="#" ><button style="color: blue;padding: 3px 15px;"> 任务</button></a>
+                <a href="${ctxPath}/contract/list" ><button style="color: blue;padding: 3px 15px;"> 合同</button></a>
+                <a href="${ctxPath}/uploadImg" ><button style="color: blue;padding: 3px 15px;"> 上传图片</button></a>
+            </span>
+            <div class="am-dropdown" data-am-dropdown>
+                <button class="am-btn am-btn-primary am-dropdown-toggle">更 多<span class="am-icon-caret-down"></span></button>
+                <ul class="am-dropdown-content">
+                    <li ><a href="${ctxPath}/clue/echarts"><button class="am-btn am-btn-warning" id="doc-dropdown-close">线索统计图</button></a></li>
+                    <li ><a href="${ctxPath}/customer/echarts"><button class="am-btn am-btn-secondary" id="doc-dropdown-toggle">客户统计图</button></a></li>
+                    <li ><a href="${ctxPath}/business/echarts"><button class="am-btn am-btn-success" id="doc-dropdown-open">商机统计图</button></a></li>
+                    <li ><a href="${ctxPath}/product/echarts"><button class="am-btn am-btn-warning" id="doc-dropdown-close">产品统计图</button></a></li>
+                    <li ><a href="${ctxPath}/contract/echarts"><button class="am-btn am-btn-secondary" id="doc-dropdown-toggle">合同统计图</button></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+            <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+                <li><a href="javascript:;"><span class="am-icon-envelope-o"></span> 收件箱 <span class="am-badge am-badge-warning">5</span></a></li>
+                <li class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                        <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
+                    </a>
+                    <ul class="am-dropdown-content">
+                        <li><a href="#"><span class="am-icon-user"></span> 资料</a></li>
+                        <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
+                        <li><a href="${ctxPath}/login"><span class="am-icon-power-off"></span> 退出</a></li>
+                    </ul>
+                </li>
+                <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
+            </ul>
+        </div>
+
+    </div>
+    <div style="height:60px; width:60px"></div>
+</div>
+
+    <div th:fragment="_css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="Cache-Control" content="no-siteapp" />
+        <link rel="icon" type="image/png" href="assets/i/favicon.png">
+        <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+        <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+        <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+        <link rel="stylesheet" href="assets/css/admin.css">
+    </div>
+
+    <div class="admin-sidebar am-offcanvas" id="admin-offcanvas" th:fragment="_start" style="margin-right: 18px;">
+        <div class="am-offcanvas-bar admin-offcanvas-bar">
+            <ul class="am-list admin-sidebar-list">
+                <li><a href="${ctxPath}"><span class="am-icon-home"></span> 首页</a></li>
+                <li class="admin-parent">
+                    <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 功能<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                    <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                        <%for(var item in session.funcList!){%>
+                        <li><a href="${ctxPath}/${item.func_url}"><span class="am-icon-pencil-square-o"></span> ${item.func_name}</a></li>
+                        <%}%>
+                    </ul>
+                </li>
+                <li><a href="${ctxPath}/register"><span class="am-icon-sign-out"></span> 注 册</a></li>
+            </ul>
+
+            <div class="am-panel am-panel-default admin-sidebar-panel">
+                <div class="am-panel-bd">
+                    <p><span class="am-icon-bookmark"></span> 公告</p>
+                    <p>时光静好，与君语；细水流年，与君同。—— Long Code</p>
+                </div>
+            </div>
+
+            <div class="am-panel am-panel-default admin-sidebar-panel">
+                <div class="am-panel-bd">
+                    <p><span class="am-icon-tag"></span> wiki</p>
+                    <p>Welcome to the Long Code wiki!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--    抽取的script-->
+    <div th:fragment="script">
+        <link href="/easyui/themes/insdep/easyui.css" rel="stylesheet" type="text/css">
+        <link href="/easyui/themes/insdep/easyui_animation.css" rel="stylesheet" type="text/css">
+        <link href="/easyui/themes/insdep/easyui_plus.css" rel="stylesheet" type="text/css">
+        <link href="/easyui/themes/insdep/insdep_theme_default.css" rel="stylesheet" type="text/css">
+        <link href="/easyui/themes/insdep/icon.css" rel="stylesheet" type="text/css">
+        <link href="/easyui/themes/color.css" rel="stylesheet" type="text/css">
+
+        <link href="/ztree/zTreeStyle/zTreeStyle.css" rel="stylesheet" type="text/css" >
+        <link href="/css/common.css" rel="stylesheet" type="text/css" >
+
+        <script type="text/javascript" src="/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="/easyui/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="/easyui/themes/insdep/jquery.insdep-extend.min.js"></script>
+        <script type="text/javascript" src="/ztree/jquery.ztree.all.min.js"></script>
+        <script type="text/javascript" src="/easyui/easyui-lang-zh_CN.js"></script>
+        <script type="text/javascript" src="/kindeditor/kindeditor-all-min.js"></script>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>My JSP 'show.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+
+<!--	<%@ include file="/WEB-INF/content/script.html" %>-->
+	  <div th:replace="~{commons/script::script}"></div>
+<!--	  <div th:replace="~{commons/script::_css}"></div>-->
+  </head>
+  <style>
+  	*{
+  		margin-left: 10px;
+  		padding: 3px;	
+  	}
+  	.tip{
+  		
+  		height:30px;
+  		text-align: right;
+  		background-color: #F5F5F5;
+  	}
+  </style>
+  <body>
+<!--  <div th:replace="~{commons/script::_header}"></div>-->
+<!--  <div th:replace="~{commons/script::_start}"></div>-->
+  	<table>
+  		<tr>
+  			<td colspan="4">客户基本信息</td>
+  		</tr>
+  		<tr>
+  			<td class="tip">线索负责人：</td>
+  			<td><input class="easyui-textbox" th:value="${user.getUsername()}" data-options="readonly:true"></td>
+  			<td class="tip">公司名：</td>
+  			<td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${leads.getName()}" data-options="readonly:true"></td>
+  		</tr>
+  		<tr>
+  			<td class="tip">来源：</td>
+  			<td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${leads.getSource()}" data-options="readonly:true"></td>
+  			<td class="tip">联系人姓名：</td>
+  			<td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${leads.getContactsName()}" data-options="readonly:true"></td>
+  		</tr>
+  		<tr>
+  			<td class="tip">职位：</td>
+  			<td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${leads.getPosition()}" data-options="readonly:true"></td>
+  			<td class="tip">尊称：</td>
+  			<td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${leads.getSaltname()}" data-options="readonly:true"></td>
+  		</tr>
+  		<tr>
+  			<td class="tip">手机：</td>
+  			<td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${leads.getMobile()}" data-options="readonly:true"></td>
+  			<td class="tip">邮箱：</td>
+  			<td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${leads.getEmail()}" data-options="readonly:true"></td>
+  		</tr>
+  		<tr>
+  			<td class="tip">地址：</td>
+  			<td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${leads.getAddress()}" data-options="readonly:true"></td>
+  		</tr>
+		<tr>
+			<td class="tip">下次联系时间：</td>
+			<td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${leads.getNextstepTime()}" data-options="readonly:true"></td>
+			<td class="tip">邮箱：</td>
+			<td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${leads.getNextstep()}" data-options="readonly:true"></td>
+		</tr>
+		<tr>
+			<td class="tip">备注：</td>
+			<td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${leads.getLeadnote()}" data-options="readonly:true"></td>
+		</tr>
+  		
+
+  	</table>
+  </body>
+</html>

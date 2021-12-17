@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haogu.mapper.CustomerMapper">
+    <sql id="selectCustomer">
+        select
+      a.id,a.name,a.industry,a.rating,a.address,c.username owner,c.username createUser,a.create_time,a.update_time
+      from tb_crm_customer a,tb_system_user c
+      where c.id=a.owner_user_id and a.creator_user_id=c.id and delete_status=0
+    </sql>
+
+    <select id="selectCustomerList" resultType="com.haogu.entity.CustomerList">
+    <include refid="selectCustomer"/>
+       limit #{page},#{size};
+    </select>
+
+    <select id="selectByUser" resultType="com.haogu.entity.User">
+        select * from tb_system_user;
+    </select>
+
+    <select id="selectCustomerLike" resultType="com.haogu.entity.CustomerList">
+        <include refid="selectCustomer"/>
+        and name like '%' #{search} '%';
+    </select>
+</mapper>

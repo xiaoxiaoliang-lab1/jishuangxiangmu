@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.haogu.mapper.LeadsMapper">
+    <select id="searchLeads" resultType="vLeads">
+        select l.id,l.name,l.contacts_name,l.saltname,l.mobile,l.nextstep,l.nextstep_time,u1.username owner_name,
+                u2.username create_name,l.create_time
+        from tb_crm_leads l,tb_system_user u1,tb_system_user u2
+        where l.owner_user_id=u1.id and l.creator_user_id = u2.id
+        limit #{pageNum},#{pageSize}
+    </select>
+</mapper>

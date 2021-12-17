@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base href="<%=basePath%>">
+
+    <title>My JSP 'show.jsp' starting page</title>
+
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="This is my page">
+
+    <div th:replace="~{commons/script::script}"></div>
+</head>
+<style>
+    * {
+        margin-left: 10px;
+        padding: 3px;
+    }
+
+    .tip {
+
+        height: 30px;
+        text-align: right;
+        background-color: #F5F5F5;
+    }
+</style>
+<body>
+<table>
+    <tr>
+        <td colspan="4">客户基本信息</td>
+    </tr>
+    <tr>
+        <td class="tip">客户名：</td>
+        <td><input class="easyui-textbox" th:value="${customer.names}" data-options="readonly:true"></td>
+        <td class="tip">客户来源：</td>
+        <td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${customer.origin }" data-options="readonly:true"></td>
+    </tr>
+    <tr>
+        <td class="tip">地址：</td>
+        <td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${customer.address }"
+                   data-options="readonly:true"></td>
+        <td class="tip">邮编：</td>
+        <td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${customer.zipcode }"
+                   data-options="readonly:true"></td>
+    </tr>
+    <tr>
+        <td class="tip">行业：</td>
+        <td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${customer.industry }"
+                   data-options="readonly:true"></td>
+        <td class="tip">盈利额：</td>
+        <td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${customer.annualrevenue }"
+                   data-options="readonly:true"></td>
+    </tr>
+    <tr>
+        <td class="tip">公司性质：</td>
+        <td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${customer.ownership }"
+                   data-options="readonly:true"></td>
+        <td class="tip">评分：</td>
+        <td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${customer.rating }"
+                   data-options="readonly:true"></td>
+    </tr>
+    <tr>
+        <td class="tip">客户负责人：</td>
+        <td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${customer.owneruserid}"
+                   data-options="readonly:true"></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <thbody th:each="contacts:${list}">
+        <tr>
+            <td colspan="4">主要联系人</td>
+        </tr>
+        <tr>
+            <td class="tip">姓名：</td>
+            <td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${contacts.name}"
+                       data-options="readonly:true"></td>
+            <td class="tip">性别：</td>
+            <td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${contacts.sex}"
+                       data-options="readonly:true"></td>
+        </tr>
+        <tr>
+            <td class="tip">部门：</td>
+            <td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${contacts.department}"
+                       data-options="readonly:true"></td>
+            <td class="tip">职位：</td>
+            <td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${contacts.post}"
+                       data-options="readonly:true"></td>
+        </tr>
+        <tr>
+            <td class="tip">称呼：</td>
+            <td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${contacts.saltname}"
+                       data-options="readonly:true"></td>
+            <td class="tip">电话：</td>
+            <td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${contacts.telephone}"
+                       data-options="readonly:true"></td>
+        </tr>
+        <tr>
+            <td class="tip">QQ：</td>
+            <td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${contacts.qqno}"
+                       data-options="readonly:true"></td>
+            <td class="tip">Email：</td>
+            <td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${contacts.email}"
+                       data-options="readonly:true"></td>
+        </tr>
+        <tr>
+            <td class="tip">地址：</td>
+            <td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${contacts.address}"
+                       data-options="readonly:true"></td>
+            <td class="tip">邮编：</td>
+            <td><input class="easyui-textbox validatebox-text validatebox-readonly" th:value="${contacts.zipcode}"
+                       data-options="readonly:true"></td>
+        </tr>
+
+        <tr>
+            <td class="tip">描述：</td>
+            <td colspan="3">
+            <textarea style="width:579px;height:60px;" class="easyui-textbox" th:text="${contacts.description}"
+                      data-options="readonly:true"></textarea>
+            </td>
+        </tr>
+    </thbody>
+
+
+    <tr>
+        <td colspan="4">系统信息</td>
+    </tr>
+    <tr>
+        <td class="tip">创建人：</td>
+        <td><input class="easyui-textbox validatebox-readonly" th:value="${customer.creatoruserid }"
+                   data-options="readonly:true"></td>
+        <td class="tip">创建时间：</td>
+        <td><input class="easyui-textbox validatebox-readonly"
+                   th:value="${#dates.format(customer.createtime,'yyyy-MM-dd') }" data-options="readonly:true"></td>
+    </tr>
+</table>
+</body>
+</html>

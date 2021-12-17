@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.haogu.mapper.FunctionMapper">
+    <select id="findByUserId" resultType="Function">
+        select
+            F.ID,F.CREATETIME,F.FUNCCODE,F.FUNCNAME,F.FUNCNOTE,F.FUNCTYPE,F.FUNCURL,F.ICONCLASS,F.ICONURL,F.SORTNUM,F.STATUS,F.UPDATETIME,F.CREATEBY,F.PARENTID,F.UPDATEBY
+        from
+             tb_system_function f,tb_system_role_function rf,tb_system_role r,tb_system_user_role ur,tb_system_user u
+        where
+              f.id=rf.funcid and r.id=rf.roleid and r.id=ur.roleid and u.id=ur.userid
+        and u.id=#{id}
+
+    </select>
+</mapper>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <title>添加线索</title>
+    
+	<meta name="pragma" content="no-cache">
+	<meta name="cache-control" content="no-cache">
+	<meta name="content-type" content="text/html;charset=UTF-8">
+	<meta name="expires" content="0">   
+<!--    <%@include file="../../script.html" %>-->
+	  <div th:replace="~{commons/script::script}"></div>
+<!--	  <div th:replace="~{commons/script::_css}"></div>-->
+<!--    <link href="http://www.easyui-extlib.com/Content/Site.css" rel="stylesheet" />-->
+<!--    <script src="http://www.easyui-extlib.com/Scripts/jquery-extensions/jquery.jdirk.js"></script>-->
+<!--    <link href="http://www.easyui-extlib.com/Scripts/jquery-easyui-extensions/validatebox/jeasyui.extensions.validatebox.css" rel="stylesheet" />-->
+<!--    <script src="http://www.easyui-extlib.com/Scripts/jquery-easyui-extensions/validatebox/jeasyui.extensions.validatebox.rules.js"></script>-->
+    
+  </head>
+   <style>
+  	*{
+  		margin-left: 10px;
+  		padding: 3px;	
+  	}
+  	.tip{
+  		
+  		height:30px;
+  		text-align: right;
+  		background-color: #F5F5F5;
+  	}
+	.addtable{
+		height:550px;
+	}
+	.addtable tr{
+		margin:60px !important;
+		height:36px;
+	}
+	.addtable tr td{
+		padding-left:5px;
+	}
+  </style>
+
+  <body>
+
+  	<form id="newCustomer" method="post">
+<!--  		<input type="hidden" name="customerVO.id" value="${customerVO.id }">-->
+<!--  		<input type="hidden" name="customerVO.isDeleted" value="${false}">-->
+<!--  		<input type="hidden" name="customerVO.isLocked" value="${false}">-->
+<!--  		<input type="hidden" name="customerVO.contactId" value="${customerVO.contactId }">-->
+<!--  		<input type="hidden" name="customerVO.contactCreateUserId" value="${customerVO.contactCreateUserId }">-->
+<!--  		<input type="hidden" name="customerVO.contactCreateTime" value="${customerVO.contactCreateTime }">-->
+<!--  		<input type="hidden" name="customerVO.createUserId" value="${customerVO.createUserId }">-->
+<!--  		<input type="hidden" name="customerVO.createTime" value="${customerVO.createTime}">-->
+	<h3></h3>
+	<table class="addtable">
+    	<tr>
+    		<td colspan="4">主要信息</td>
+    	</tr>
+    	<tr>
+    		<td class="tip">负责人：</td>
+    		<td>
+				<input name="ownerUserId" class="easyui-textbox easyui-validatebox" data-options="prompt:'负责人',validType:['chinese'],required:false"/>
+				&nbsp;<a href="javascript:void(0);" class="easyui-linkbutton button-white">放入线索池</a>
+			</td>
+    		<td class="tip">公司名称：</td>
+    		<td><input name="name" placeholder="公司名称" class="easyui-textbox easyui-validatebox" data-options="prompt:'公司名称',validType:['chinese'],required:false"/></td>
+    	</tr>
+    	<tr>
+    		<td class="tip">来源：</td>
+    		<td>
+				<select class="easyui-combobox" name="source" style= "width:146px">
+					<option value="其他">-请选择-</option>
+					<option value="展览会">展览会</option>
+					<option value="广告">广告</option>
+					<option value="网络">网络</option>
+					<option value="媒体">媒体</option>
+				</select>
+			</td>
+    		<td class="tip">联系人姓名：</td>
+    		<td><input name="contactsName" class="easyui-textbox easyui-validatebox" data-options="prompt:'联系人姓名',required:true"/></td>
+    	</tr>
+    	<tr>
+    		<td class="tip">职位：</td>
+    		<td>
+				<input name="position"  class="easyui-textbox easyui-validatebox" data-options="prompt:'职位',required:false"/>
+			</td>
+    		<td class="tip">尊称：</td>
+    		<td>
+				<input name="saltname" class="easyui-textbox easyui-validatebox" data-options="prompt:'尊称',required:false"/>
+			</td>
+    	</tr>
+    	<tr>
+    		<td class="tip">手机：</td>
+    		<td>
+				<input name="mobile" class="easyui-textbox easyui-validatebox" data-options="prompt:'手机',required:true"/>
+			</td>
+    		<td class="tip">邮箱：</td>
+    		<td>
+				<input name="email" placeholder="邮箱" class="easyui-textbox easyui-validatebox" data-options="prompt:'邮箱',required:false"/>
+			</td>
+    	</tr>
+    	<tr>
+    		<td class="tip">地址：</td>
+    		<td colspan="3">
+    			<input id="addr1"class="easyui-textbox easyui-validatebox" style="width:100px" data-options="prompt:'省',required:true">
+    			<input id="addr2" class="easyui-textbox easyui-validatebox" style="width:100px" data-options="prompt:'市',required:true">
+    			<input id="addr3" class="easyui-textbox easyui-validatebox" style="width:100px" data-options="prompt:'区',required:true">
+    			<input id="addr4" class="easyui-textbox easyui-validatebox" data-options="prompt:'具体街道信息',required:true">
+    			<input id="address" name="address" type="hidden">
+    		</td>
+    	</tr>
+		<tr>
+			<td class="tip">下次联系时间：</td>
+			<td>
+				<input name="nextstepTime" class="easyui-textbox easyui-validatebox" data-options="prompt:'下次联系时间',required:false"/>
+			</td>
+			<td class="tip">下次联系内容：</td>
+			<td><input name="nextstep" class="easyui-textbox easyui-validatebox" data-options="prompt:'下次联系内容',validType:['zipCode'],required:false"/></td>
+		</tr>
+    	<tr>
+    		<td colspan="4">附加信息</td>
+    	</tr>
+    	<tr>
+			<td class="tip">备注：</td>
+    		<td colspan="3">
+    			<textarea class="easyui-textbox" name="leadnote" data-options="prompt:'备注',multiline:true" style="width:579px;height:60px;"></textarea>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="4" style="text-align: center;">
+    			<a id="save" href="javascript:void(0);" class="easyui-linkbutton button-purple" >保存</a>
+<!--    			<a id="submit" href="javascript:void(0);" class="easyui-linkbutton button-pink" >保存并新建</a>-->
+				<button id="submit" type="submit" class="easyui-linkbutton button-pink" >保存并新建</button>
+				<a class="easyui-checkbox">返回</a>
+
+    		</td>
+    	</tr>
+    </table>
+    </form>
+  </body>
+  <script type="text/javascript">
+  	$(function(){
+  		// $.post("system/user/UserAction_findAll.action",function(data){
+  		// 	if(data&&data.success){
+  		// 		var ownerId = "${customerVO.ownerId}";
+  		// 		$.each(data.data,function(index,obj){
+  		//
+  		// 			var option = $("<option value='"+obj.id+"' >"+obj.username+"</option>")
+  		// 			if(ownerId == obj.id){
+  		// 				option.prop("selected",true);
+  		// 			}
+  		// 			$("#owner").append(option);
+  		// 		})
+  		// 	}
+  		// },"json")
+  		//修改回显地址
+  		// var address = "${customerVO.address}";
+  		// address = address.split("-");
+  		// $("#addr1").textbox({"value":address[0]});
+  		// $("#addr2").textbox({"value":address[1]});
+  		// $("#addr3").textbox({"value":address[2]});
+  		// $("#addr4").textbox({"value":address[3]});
+  		
+  		$("#submit").on("click",function(e){
+
+  			var addr1 = $("#addr1").val();
+  			var addr2 = $("#addr2").val();
+  			var addr3 = $("#addr3").val();
+  			var addr4 = $("#addr4").val();
+  			var addr = addr1+"-"+addr2+"-"+addr3+"-"+addr4;
+  			$("#address").val(addr);
+			  alert(addr)
+			// $.post("/add",$("#newCustomer").serialize(),function(data){
+			// 	alert(data)
+			// 	if(data.success){
+			// 		alert(添加成功)
+			// 	}
+			// 	alert(111)
+			// 	var tdata=eval("("+data+")");
+			// 	if(tdata&&tdata.success){
+			// 		parent.parent.$("#topWindow").window("close");
+			// 	}
+			// },"json")
+  			$("#newCustomer").form("submit",{
+  				// url:"manage/customer/CustomerAction_saveOrUpdate.action",
+				url:"/leads/addLeads",
+  				onSubmit:function(){
+  					return $(this).form("validate");
+  				},
+
+  				success:function(data){
+					alert("添加成功")
+					alert(data)
+					alert(111)
+  					var tdata=eval("("+data+")");
+  					if(tdata&&tdata.success){
+  						parent.parent.$("#topWindow").window("close");
+  					}
+  				}
+  			})
+  			
+  		})
+  	})
+  </script>
+</html>

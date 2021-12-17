@@ -1,0 +1,10 @@
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-field: "delete_status"
+      logic-delete-value: 1
+      logic-no-delete-value: 0
+#控制台打印sql
+
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
