@@ -26,6 +26,7 @@ public class TestUserService {
     @Test
     public void test3(){
         User admin = userService.findUserForLogin("admin", "15688125398");
+        System.out.println("123");
         System.out.println(admin);
     }
 }
