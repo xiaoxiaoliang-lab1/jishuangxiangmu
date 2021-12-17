@@ -2,6 +2,8 @@ package com.haogu.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.haogu.entity.User;
+import com.haogu.entity.VLeads;
+import com.haogu.entity.VUser;
 import com.haogu.mapper.UserMapper;
 import com.haogu.service.UserService;
 import org.springframework.stereotype.Service;
@@ -31,5 +33,17 @@ public class UserServiceImpl implements UserService {
     public User findUserById(Integer id) {
         User user = userMapper.selectById(id);
         return user;
+    }
+
+    @Override
+    public List<VUser> selectAllUserByPage(Integer pageNum, Integer pageSize) {
+        List<VUser> vUsers = userMapper.selectAllUserByPage((pageNum - 1) * pageSize, pageSize);
+        return vUsers;
+    }
+
+    @Override
+    public Integer selectCount() {
+        Integer integer = userMapper.selectCount(null);
+        return integer;
     }
 }

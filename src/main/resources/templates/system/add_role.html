@@ -73,37 +73,37 @@
 				$("#form").form("reset");
 			});
 			
-			//为保存按钮添加事件
+			// //为保存按钮添加事件
 			$("#saveBtn").on("click",function(event){
+			//
+			// 	$.post("/system/addRole",$('#form').serialize(),function (data){
+			// 		alert(111)
+			// 		var obj = eval("("+data+")");
+			// 		alert(obj)
+			// 		if(obj.success){
+			// 			$.messager.alert("提示",obj.message);
+			// 			parent.closeTopWindow();
+			// 		}else{
+			// 			$.messager.alert("警告",obj.message);
+			// 		}
+			// 	},"json")
 
-				$.post("/system/addRole",$('#form').serialize(),function (data){
-					alert(111)
-					var obj = eval("("+data+")");
-					alert(obj)
-					if(obj.success){
-						$.messager.alert("提示",obj.message);
-						parent.closeTopWindow();
-					}else{
-						$.messager.alert("警告",obj.message);
+				$("#form").form("submit",{
+					url:"/system/addRole",
+					onSumbit : function(){
+						//调用easyui中form对象的validate方法对表单中数据进行校验，该方法返回boolean值，如果为false会阻止表单提交
+						return $("#form").form("validate");
+					},
+					success : function(data){
+						var obj = eval("("+data+")");
+						if(obj.success){
+							$.messager.alert("提示",obj.message);
+							parent.closeTopWindow();
+						}else{
+							$.messager.alert("警告",obj.message);
+						}
 					}
-				},"json")
-
-				// $("#form").form("submit",{
-				// 	url:"/system/addRole",
-				// 	onSumbit : function(){
-				// 		//调用easyui中form对象的validate方法对表单中数据进行校验，该方法返回boolean值，如果为false会阻止表单提交
-				// 		return $("#form").form("validate");
-				// 	},
-				// 	success : function(data){
-				// 		var obj = eval("("+data+")");
-				// 		if(obj.success){
-				// 			$.messager.alert("提示",obj.message);
-				// 			parent.closeTopWindow();
-				// 		}else{
-				// 			$.messager.alert("警告",obj.message);
-				// 		}
-				// 	}
-				// });
+				});
 			});
 			
 		});

@@ -3,6 +3,9 @@ package com.haogu.service;
 
 
 import com.haogu.entity.User;
+import com.haogu.entity.VLeads;
+import com.haogu.entity.VUser;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -27,4 +30,8 @@ public interface UserService {
      * @return
      */
      User findUserById(Integer id);
+
+    List<VUser> selectAllUserByPage(@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
+
+    Integer selectCount();
 }
